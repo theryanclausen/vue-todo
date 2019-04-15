@@ -1,11 +1,25 @@
 <template>
-    <h3>Add</h3>
+    <form @submit="add">
+    <input type="text" v-model="item" name="item" >
+    <button type="submit">add</button>
+    </form>
 </template>
 
 <script>
 export default {
-    name:'Add'
-
+    name:'Add', 
+    data(){
+        return{
+            item: ''
+        }
+    },
+    methods:{
+        add(e){
+            e.preventDefault()
+            this.$emit('addTodo', {item:this.item, completed:false, id:Date.now()})
+            this.item = ''
+        }
+    }
 }
 </script>
 
